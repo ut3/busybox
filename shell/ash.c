@@ -144,6 +144,9 @@
 //kbuild:lib-$(CONFIG_BASH_IS_ASH) += ash.o ash_ptr_hack.o shell_common.o
 //kbuild:lib-$(CONFIG_ASH_RANDOM_SUPPORT) += random.o
 
+/* Use of 'local' at global scope does not cause an error */
+#define ZII_ALLOW_LOCAL_AT_GLOBAL_SCOPE 1
+
 /*
  * DEBUG=1 to compile in debugging ('set -o debug' turns on)
  * DEBUG=2 to compile in and turn on debugging.
@@ -9508,7 +9511,31 @@ localcmd(int argc UNUSED_PARAM, char **argv)
 	char *name;
 
 	if (!localvar_stack)
+#ifndef ZII_ALLOW_LOCAL_AT_GLOBAL_SCOPE
 		ash_msg_and_raise_error("not in a function");
+#else
+	{
+		char **pv = argv + 1;
+		if (*pv)
+		{
+			STARTSTACKSTR(name);
+			for(;;)
+			{
+				name = stack_putstr(*pv, name);
+				if (!*++pv)
+					break;
+				STPUTC(' ', name);
+			}
+			STPUTC('\0', name);
+			name = grabstackstr(name);
+			ash_msg("not in a function: %s %s", argv[0], name);
+			return evalstring(name, 0);
+		}
+
+		ash_msg("not in a function: %s", argv[0]);
+		return 0;
+	}
+#endif
 
 	argv = argptr;
 	while ((name = *argv++) != NULL) {
