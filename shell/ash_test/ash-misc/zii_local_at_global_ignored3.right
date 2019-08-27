@@ -1,0 +1,4 @@
+./zii_local_at_global_ignored3.tests: local: line 3: not in a function: local d=4
+./zii_local_at_global_ignored3.tests: local: line 4: not in a function: local e=5 f=6
+11 22 33 44 55 66 77 88
+11 22 33 4 5 6 77 88

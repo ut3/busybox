@@ -1,0 +1,15 @@
+a=1
+b=2 c=3
+local d=4
+local e=5 f=6
+g=7 h=8
+function func() {
+	a=11
+	b=22 c=33
+	local d=44
+	local e=55 f=66
+	g=77 h=88
+	echo $a $b $c $d $e $f $g $h
+}
+func
+echo $a $b $c $d $e $f $g $h

@@ -1,0 +1,4 @@
+x=0; f() { local x=1; echo $x; local x; echo $x; }; f; echo $x
+x=0; f() { local x=1; echo $x; local x=2; echo $x; }; f; echo $x
+local y=0; f() { local y=1; echo $y; }; f; echo $y
+local y=0; f() { local y=1; echo $y; local y=2; echo $y; }; f; echo $y

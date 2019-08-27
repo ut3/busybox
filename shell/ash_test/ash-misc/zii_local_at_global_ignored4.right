@@ -1,0 +1,13 @@
+1
+1
+0
+1
+2
+0
+./zii_local_at_global_ignored4.tests: local: line 3: not in a function: local y=0
+1
+0
+./zii_local_at_global_ignored4.tests: local: line 4: not in a function: local y=0
+1
+2
+0

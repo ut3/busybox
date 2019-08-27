@@ -1,0 +1,2 @@
+./zii_local_at_global_ignored2.tests: local: line 1: not in a function: local x=0 y=1 z=2
+0 1 2
