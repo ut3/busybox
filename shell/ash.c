@@ -153,7 +153,7 @@
  * When debugging is on ("set -o debug" was executed, or DEBUG=2),
  * debugging info is written to ./trace, quit signal generates core dump.
  */
-#define DEBUG 0
+#define DEBUG 1
 /* Tweak debug output verbosity here */
 #define DEBUG_TIME 0
 #define DEBUG_PID 1
